@@ -89,24 +89,22 @@
         <span class="mr-2">📖</span>
         实现原理
       </h2>
-      <div class="explanation-content">
-        <p class="text-white/80 leading-relaxed">{{ component.explanation }}</p>
-        
+      <div class="explanation-content rich-text">
+        <div v-html="formatExplanation(component.explanation)"></div>
         <!-- 关键知识点 -->
-        <div class="key-points mt-6">
+        <div class="key-points mt-8">
           <h3 class="text-lg font-medium text-white mb-4">关键知识点：</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div 
               v-for="point in getKeyPoints(component)"
               :key="point.title"
-              class="bg-white/10 rounded-lg p-4"
+              class="key-point-card"
             >
               <h4 class="font-medium text-cyan-400 mb-2">{{ point.title }}</h4>
               <p class="text-white/70 text-sm">{{ point.description }}</p>
             </div>
           </div>
         </div>
-
         <!-- 使用场景 -->
         <div class="use-cases mt-6">
           <h3 class="text-lg font-medium text-white mb-4">适用场景：</h3>
@@ -305,6 +303,24 @@ const toggleDemo = () => {
   }
 }
 
+// 富文本格式化实现原理内容（支持换行、列表、加粗等）
+function formatExplanation(explanation: string) {
+  if (!explanation) return ''
+  // 支持markdown风格的加粗、列表、换行
+  let html = explanation
+    .replace(/\n\n/g, '</p><p>') // 段落
+    .replace(/\n- /g, '<ul><li>') // 列表起始
+    .replace(/\n\d+\. /g, '<ol><li>') // 有序列表起始
+    .replace(/\n/g, '<br>') // 换行
+    .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') // 加粗
+    .replace(/- (.*?)(?=<|$)/g, '<li>$1</li>') // 列表项
+    .replace(/<ul><li>/g, '<ul><li>') // 保证ul结构
+    .replace(/<ol><li>/g, '<ol><li>')
+    .replace(/(<\/li>)(?!<li>)/g, '$1</ul>') // 结束ul
+    .replace(/(<\/li>)(?!<li>)/g, '$1</ol>') // 结束ol
+  return `<p>${html}</p>`
+}
+
 onMounted(() => {
   if (!component.value) {
     console.warn('组件未找到:', route.params.id)
@@ -401,5 +417,61 @@ onMounted(() => {
 
 .code-container::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
+}
+
+.explanation-content {
+  background: rgba(30,40,60,0.7);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.rich-text p {
+  margin-bottom: 1em;
+  color: #e0e6ed;
+  line-height: 1.9;
+}
+.rich-text ul, .rich-text ol {
+  margin: 0.5em 0 1em 1.5em;
+  padding-left: 1.2em;
+}
+.rich-text li {
+  margin-bottom: 0.3em;
+  color: #b5d6f6;
+  font-size: 1em;
+}
+.rich-text b {
+  color: #7de2fc;
+  font-weight: bold;
+}
+.key-point-card {
+  background: linear-gradient(135deg,rgba(0,255,255,0.08),rgba(0,0,40,0.12));
+  border: 1px solid rgba(0,255,255,0.08);
+  border-radius: 10px;
+  padding: 1.2em 1em;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(0,255,255,0.04);
+}
+.key-point-card:hover {
+  box-shadow: 0 4px 16px 0 rgba(0,255,255,0.10);
+}
+.use-case-item {
+  background: rgba(0,255,255,0.04);
+  border-radius: 6px;
+  padding: 0.4em 0.8em;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+.use-case-item:hover {
+  background: rgba(0,255,255,0.10);
+}
+@media (max-width: 768px) {
+  .explanation-content {
+    padding: 1rem 0.5rem;
+  }
+  .key-point-card {
+    padding: 0.8em 0.6em;
+  }
 }
 </style>

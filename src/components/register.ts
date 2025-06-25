@@ -21,7 +21,6 @@ import FlashAnimation from './animations/FlashAnimation.vue'
 // 异形图组件
 import HexagonShape from './shapes/HexagonShape.vue'
 import StarShape from './shapes/StarShape.vue'
-import HeartShape from './shapes/HeartShape.vue'
 import DiamondShape from './shapes/DiamondShape.vue'
 import TriangleShape from './shapes/TriangleShape.vue'
 import OctagonShape from './shapes/OctagonShape.vue'
@@ -70,7 +69,6 @@ export function registerComponents(app: App) {
   // 异形图组件注册
   app.component('HexagonShape', HexagonShape)
   app.component('StarShape', StarShape)
-  app.component('HeartShape', HeartShape)
   app.component('DiamondShape', DiamondShape)
   app.component('TriangleShape', TriangleShape)
   app.component('OctagonShape', OctagonShape)
