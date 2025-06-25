@@ -27,3 +27,8 @@ const router = createRouter({
 })
 
 export default router
+
+// 路由切换时自动滚动到顶部
+router.afterEach(() => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+})

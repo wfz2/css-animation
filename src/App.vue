@@ -105,6 +105,15 @@
       </main>
     </div>
   </div>
+  <!-- 一键置顶/置底按钮 -->
+  <div class="scroll-buttons fixed right-6 bottom-6 z-50 flex flex-col gap-3">
+    <button class="scroll-btn bg-cyan-500 hover:bg-cyan-600 text-white rounded-full shadow-lg w-12 h-12 flex items-center justify-center transition-all duration-200" @click="scrollToTop">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+    <button class="scroll-btn bg-purple-500 hover:bg-purple-600 text-white rounded-full shadow-lg w-12 h-12 flex items-center justify-center transition-all duration-200" @click="scrollToBottom">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -129,4 +138,28 @@ const searchQuery = computed({
 const setSelectedCategory = (category: string) => {
   store.setSelectedCategory(category)
 }
+
+// 滚动到顶部/底部方法
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+const scrollToBottom = () => {
+  window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })
+}
 </script>
+
+<style scoped>
+/* 一键置顶/置底按钮样式 */
+.scroll-buttons {
+  pointer-events: none;
+}
+.scroll-btn {
+  pointer-events: auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  opacity: 0.85;
+}
+.scroll-btn:hover {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.08);
+}
+</style>
