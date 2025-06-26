@@ -62,7 +62,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, defineProps, defineEmits, onMounted, watch } from 'vue';
+import { ref, defineProps, defineEmits, onMounted, watch, withDefaults } from 'vue';
 
 // 定义组件接口
 interface HeartProps {
@@ -74,27 +74,12 @@ interface HeartProps {
 }
 
 // 定义props
-const props = defineProps<HeartProps>({
-  size: {
-    type: Number,
-    default: 30
-  },
-  isLiked: {
-    type: Boolean,
-    default: false
-  },
-  count: {
-    type: Number,
-    default: 0
-  },
-  showCount: {
-    type: Boolean,
-    default: true
-  },
-  animationSpeed: {
-    type: Number,
-    default: 500
-  }
+const props = withDefaults(defineProps<HeartProps>(), {
+  size: 30,
+  isLiked: false,
+  count: 0,
+  showCount: true,
+  animationSpeed: 500
 });
 
 // 定义emits
@@ -205,4 +190,4 @@ onMounted(() => {
   color: #606266;
   transition: all 0.3s ease;
 }
-</style>    
+</style>
