@@ -26,6 +26,7 @@ import TriangleShape from './shapes/TriangleShape.vue'
 import OctagonShape from './shapes/OctagonShape.vue'
 import ArrowShape from './shapes/ArrowShape.vue'
 import CloudShape from './shapes/CloudShape.vue'
+import HeartShape from './shapes/HeartShape.vue'
 
 // 炫酷效果组件
 import NeonTextEffect from './effects/NeonTextEffect.vue'
@@ -74,6 +75,7 @@ export function registerComponents(app: App) {
   app.component('OctagonShape', OctagonShape)
   app.component('ArrowShape', ArrowShape)
   app.component('CloudShape', CloudShape)
+  app.component('HeartShape', HeartShape)
   
   // 炫酷效果组件注册
   app.component('NeonTextEffect', NeonTextEffect)

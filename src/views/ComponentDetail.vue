@@ -158,7 +158,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, nextTick } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useComponentStore } from '../stores/components'
 import hljs from 'highlight.js/lib/core'
@@ -299,7 +299,8 @@ const toggleDemo = () => {
   demoPlaying.value = !demoPlaying.value
   const demoElement = document.querySelector('.demo-showcase')
   if (demoElement) {
-    demoElement.style.animationPlayState = demoPlaying.value ? 'running' : 'paused'
+    const element = demoElement as HTMLElement
+    element.style.animationPlayState = demoPlaying.value ? 'running' : 'paused'
   }
 }
 

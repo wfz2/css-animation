@@ -226,128 +226,6 @@ export const componentList: ComponentInfo[] = [
     explanation: `【技术原理】\n- 通过transform: translateX实现元素的左右位移，模拟震动。\n- 使用@keyframes定义高频率关键帧，创造快速震动效果。\n\n【实现要点】\n1. 10个关键帧，0.8秒内完成快速震动。\n2. 左右各8px对称位移，幅度适中。\n3. 奇偶帧交替方向，模拟真实摇头动作。\n\n【设计思路】\n- 适合错误提示、警告等需要引起注意的场景。\n- 动画短暂，避免干扰用户。\n\n【性能优化】\n- 仅用transform属性，动画流畅不卡顿。\n- 关键帧数量适中，兼顾效果与性能。\n\n【应用场景】\n- 表单验证失败、操作错误等交互反馈。\n\n【注意事项】\n- 动画持续时间不宜过长，避免用户不适。`
   },
 
-  {
-    id: 'wobble-animation',
-    name: '摆动动画',
-    description: '不规则摆动的有趣动画效果，富有个性',
-    category: 'animation',
-    difficulty: 'intermediate',
-    tags: ['摆动', '有趣', '不规则', '个性'],
-    component: 'WobbleAnimation',
-    code: `<template>
-  <div class="wobble-container">
-    <div class="wobble-element">
-      <slot>
-        <div class="default-content">
-          <div class="icon">🤪</div>
-          <div class="text">摆动</div>
-        </div>
-      </slot>
-    </div>
-  </div>
-</template>
-
-<style scoped>
-.wobble-element {
-  animation: wobble 1s ease-in-out;
-}
-
-/* 摆动动画关键帧 - 不规则摆动效果 */
-@keyframes wobble {
-  0%, 100% { transform: translateX(0%) rotate(0deg); }
-  15% { transform: translateX(-25%) rotate(-5deg); }
-  30% { transform: translateX(20%) rotate(3deg); }
-  45% { transform: translateX(-15%) rotate(-3deg); }
-  60% { transform: translateX(10%) rotate(2deg); }
-  75% { transform: translateX(-5%) rotate(-1deg); }
-}
-</style>`,
-    explanation: `【技术原理】\n- 结合transform: translateX和rotate实现元素的水平位移与旋转，模拟不规则摆动。\n- 通过@keyframes定义递减幅度和不规则节奏，增强真实感。\n\n【实现要点】\n1. translateX+rotate组合，创造复杂摆动效果。\n2. 位移和旋转角度逐渐减小，模拟阻尼衰减。\n3. 关键帧时间点不均匀分布，增强趣味性。\n\n【设计思路】\n- 适合需要活泼、有趣感觉的界面元素。\n- 比简单摇摆更具表现力。\n\n【性能优化】\n- 仅用transform属性，动画流畅不卡顿。\n- 关键帧数量适中，兼顾性能与效果。\n\n【应用场景】\n- 装饰性动画、趣味交互等。\n\n【注意事项】\n- 动画幅度和节奏需适度，避免过度干扰。`
-  },
-
-  {
-    id: 'swing-animation',
-    name: '钟摆动画',
-    description: '模拟钟摆摆动的物理动画效果',
-    category: 'animation',
-    difficulty: 'basic',
-    tags: ['钟摆', '摆动', '物理', '旋转'],
-    component: 'SwingAnimation',
-    code: `<template>
-  <div class="swing-container">
-    <div class="swing-element">
-      <slot>
-        <div class="default-content">
-          <div class="icon">🎪</div>
-          <div class="text">钟摆</div>
-        </div>
-      </slot>
-    </div>
-  </div>
-</template>
-
-<style scoped>
-.swing-element {
-  /* 设置旋转中心点为顶部中心，模拟钟摆悬挂点 */
-  transform-origin: top center;
-  animation: swing 2s ease-in-out infinite;
-}
-
-/* 钟摆动画关键帧 - 模拟物理摆动，角度逐渐减小 */
-@keyframes swing {
-  0%, 100% { transform: rotate(0deg); }
-  20% { transform: rotate(15deg); }
-  40% { transform: rotate(-10deg); }
-  60% { transform: rotate(5deg); }
-  80% { transform: rotate(-5deg); }
-}
-</style>`,
-    explanation: `【技术原理】\n- 通过transform-origin设置旋转中心，结合rotate实现钟摆运动。\n- 关键帧角度递减，模拟物理衰减。\n\n【实现要点】\n1. transform-origin: top center，模拟悬挂点。\n2. 角度递减，正负交替，符合物理规律。\n3. 2秒周期，ease-in-out缓动。\n\n【设计思路】\n- 适合表现"等待""思考"或装饰性动画。\n- 结构简洁，易于扩展。\n\n【性能优化】\n- 仅用transform: rotate，动画流畅不卡顿。\n- 关键帧数量适中，兼顾效果与性能。\n\n【应用场景】\n- 等待提示、装饰性元素等。\n\n【注意事项】\n- 动画幅度和节奏需适度，避免过度干扰。`
-  },
-
-  {
-    id: 'flip-animation',
-    name: '翻转动画',
-    description: '3D卡片翻转效果，具有立体感',
-    category: 'animation',
-    difficulty: 'intermediate',
-    tags: ['翻转', '3D', '卡片', '立体'],
-    component: 'FlipAnimation',
-    code: `<template>
-  <div class="flip-container">
-    <div class="flip-element">
-      <slot>
-        <div class="default-content">
-          <div class="icon">🔄</div>
-          <div class="text">翻转</div>
-        </div>
-      </slot>
-    </div>
-  </div>
-</template>
-
-<style scoped>
-.flip-container {
-  /* 设置3D透视距离，数值越小3D效果越明显 */
-  perspective: 400px;
-}
-
-.flip-element {
-  animation: flip 2s ease-in-out infinite;
-  /* 保持3D变换效果 */
-  transform-style: preserve-3d;
-}
-
-/* 3D翻转动画关键帧 */
-@keyframes flip {
-  0% { transform: rotateY(0deg); }
-  50% { transform: rotateY(180deg); }
-  100% { transform: rotateY(360deg); }
-}
-</style>`,
-    explanation: `【技术原理】\n- 利用CSS3 3D变换（rotateY）和perspective属性实现立体翻转。\n- transform-style: preserve-3d保持3D效果。\n\n【实现要点】\n1. perspective: 400px，增强3D立体感。\n2. rotateY实现水平翻转，完整360°。\n3. 2秒周期，ease-in-out缓动。\n\n【设计思路】\n- 适合卡片、图片等需要立体感的UI元素。\n- 动画参数可灵活调整。\n\n【性能优化】\n- 3D变换启用硬件加速，动画流畅。\n- 适度使用，避免GPU资源消耗过大。\n\n【应用场景】\n- 卡片翻面、图片展示、交互反馈等。\n\n【注意事项】\n- 3D动画对性能有一定要求，移动端需注意流畅性。`
-  },
-
   // ==================== 异形图组件 ====================
   {
     id: 'hexagon-shape',
@@ -423,6 +301,64 @@ export const componentList: ComponentInfo[] = [
 }
 </style>`,
     explanation: `【技术原理】\n- 利用clip-path: polygon实现五角星裁剪，10个坐标点精确计算。\n- 渐变背景提升视觉层次。\n\n【实现要点】\n1. 5个外顶点+5个内凹点，黄金比例分布。\n2. 百分比坐标，响应式适配。\n3. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合评分、收藏、奖励等需要星形元素的场景。\n- 坐标顺序影响填充效果，需精确排列。\n\n【性能优化】\n- 纯CSS实现，无需图片或SVG，渲染高效。\n- clip-path兼容性良好。\n\n【应用场景】\n- 评分系统、收藏功能、奖励徽章等。\n\n【注意事项】\n- 坐标计算复杂，建议使用工具辅助生成。\n- 旧版浏览器对clip-path支持有限。`
+  },
+
+  {
+    id: 'heart-shape',
+    name: '爱心形状',
+    description: '浪漫的爱心图形，常用于点赞和收藏功能',
+    category: 'shape',
+    difficulty: 'intermediate',
+    tags: ['爱心', '浪漫', '点赞', '收藏'],
+    component: 'HeartShape',
+    code: `<template>
+  <div class="heart-shape">
+    <div class="heart-inner">
+      <slot>
+        <div class="default-content">
+          <div class="icon">💖</div>
+          <div class="text">爱心</div>
+        </div>
+      </slot>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.heart-inner {
+  width: 60px;
+  height: 54px;
+  position: relative;
+  transform: rotate(-45deg);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+  border-radius: 0 0 0 50px;
+}
+
+.heart-inner::before,
+.heart-inner::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 48px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+  border-radius: 30px 30px 0 0;
+}
+
+.heart-inner::before {
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  left: 30px;
+  top: -15px;
+}
+
+.heart-inner::after {
+  transform: rotate(45deg);
+  transform-origin: 0 100%;
+  left: 0;
+  top: -15px;
+}
+</style>`,
+    explanation: `【技术原理】\n- 利用CSS伪元素和旋转变换创建爱心形状。\n- 主体元素作为底部，两个伪元素作为上方的圆形部分。\n\n【实现要点】\n1. 主体旋转-45度，形成菱形底部。\n2. 两个伪元素分别旋转±45度，形成圆形顶部。\n3. 精确的尺寸和位置计算，确保形状完美。\n\n【设计思路】\n- 适合社交应用、情感表达等场景。\n- 可配合动画实现心跳效果。\n\n【性能优化】\n- 纯CSS实现，无需图片或SVG。\n- 伪元素复用，减少DOM节点。\n\n【应用场景】\n- 点赞按钮、收藏功能、情感表达等。\n\n【注意事项】\n- 尺寸比例需精确计算，确保形状美观。`
   },
 
   // ==================== 炫酷效果组件 ====================
@@ -627,196 +563,5 @@ const getParticleStyle = (index) => {
 }
 </style>`,
     explanation: `【技术原理】\n- 利用大量小元素的CSS动画，模拟粒子系统的动态浮动。\n- 随机参数控制每个粒子的延迟、持续时间、位置和大小。\n\n【实现要点】\n1. 每个粒子参数（延迟、持续、位置、大小）均为随机生成，避免同步。\n2. 关键帧控制粒子从底部浮到顶部并淡出。\n3. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合营造梦幻、庆祝、氛围感强的背景。\n- 粒子数量和动画参数可灵活调整。\n\n【性能优化】\n- 仅用transform和opacity，动画流畅不卡顿。\n- 合理控制粒子数量，兼顾效果与性能。\n\n【应用场景】\n- 背景装饰、成功反馈、庆祝动画、加载动画等。\n\n【注意事项】\n- 粒子数量过多可能影响性能，需适度。\n- 动画参数可根据实际需求调整。`
-  },
-
-  // ==================== 基础动画组件补充 ====================
-  {
-    id: 'fade-in-animation',
-    name: '淡入动画',
-    description: '元素逐渐显现的淡入动画效果',
-    category: 'animation',
-    difficulty: 'basic',
-    tags: ['淡入', '透明度', '基础', '渐变'],
-    component: 'FadeInAnimation',
-    code: `<template>\n  <div class="fade-in-container">\n    <div class="fade-in-element">\n      <slot>\n        <div class="default-content">\n          <div class="icon">🌫️</div>\n          <div class="text">淡入</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.fade-in-element {\n  animation: fadeIn 1.5s ease-in;\n}\n@keyframes fadeIn {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}\n</style>`,
-    explanation: `【技术原理】\n- 通过opacity属性和@keyframes实现元素淡入。\n- animation属性控制动画时长和缓动。\n\n【实现要点】\n1. opacity从0到1，1.5秒渐变。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合页面加载、弹窗、提示等场景。\n\n【性能优化】\n- 仅用opacity，动画流畅不卡顿。\n\n【应用场景】\n- 页面元素渐现、图片加载、内容切换等。\n\n【注意事项】\n- 动画时长可根据需求调整。`
-  },
-  {
-    id: 'flash-animation',
-    name: '闪烁动画',
-    description: '元素快速闪烁的动画效果，吸引注意',
-    category: 'animation',
-    difficulty: 'basic',
-    tags: ['闪烁', '高亮', '提示', '基础'],
-    component: 'FlashAnimation',
-    code: `<template>\n  <div class="flash-container">\n    <div class="flash-element">\n      <slot>\n        <div class="default-content">\n          <div class="icon">💡</div>\n          <div class="text">闪烁</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.flash-element {\n  animation: flash 1s linear infinite;\n}\n@keyframes flash {\n  0%, 100% { opacity: 1; }\n  50% { opacity: 0; }\n}\n</style>`,
-    explanation: `【技术原理】\n- 通过opacity属性和@keyframes实现元素闪烁。\n- animation属性设置无限循环。\n\n【实现要点】\n1. opacity在1和0之间切换，1秒周期。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合高亮提示、警告、加载等场景。\n\n【性能优化】\n- 仅用opacity，动画流畅不卡顿。\n\n【应用场景】\n- 提示、警告、加载等需要吸引注意的场合。\n\n【注意事项】\n- 动画节奏可根据需求调整。`
-  },
-  {
-    id: 'slide-in-left-animation',
-    name: '左侧滑入动画',
-    description: '元素从左侧滑入的动画效果',
-    category: 'animation',
-    difficulty: 'basic',
-    tags: ['滑入', '左侧', '位移', '基础'],
-    component: 'SlideInLeftAnimation',
-    code: `<template>\n  <div class="slide-in-left-container">\n    <div class="slide-in-left-element">\n      <slot>\n        <div class="default-content">\n          <div class="icon">⬅️</div>\n          <div class="text">左滑入</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.slide-in-left-element {\n  animation: slideInLeft 1s cubic-bezier(0.23, 1, 0.32, 1);\n}\n@keyframes slideInLeft {\n  from { transform: translateX(-100%); opacity: 0; }\n  to { transform: translateX(0); opacity: 1; }\n}\n</style>`,
-    explanation: `【技术原理】\n- 通过transform: translateX和opacity实现滑入。\n- animation属性控制动画时长和缓动。\n\n【实现要点】\n1. 元素从左侧-100%滑入到原位。\n2. 透明度渐变，增强动感。\n\n【设计思路】\n- 适合弹窗、侧边栏、提示等场景。\n\n【性能优化】\n- 仅用transform和opacity，动画流畅不卡顿。\n\n【应用场景】\n- 弹窗、侧边栏、内容切换等。\n\n【注意事项】\n- 动画时长和缓动可调整。`
-  },
-  {
-    id: 'slide-in-right-animation',
-    name: '右侧滑入动画',
-    description: '元素从右侧滑入的动画效果',
-    category: 'animation',
-    difficulty: 'basic',
-    tags: ['滑入', '右侧', '位移', '基础'],
-    component: 'SlideInRightAnimation',
-    code: `<template>\n  <div class="slide-in-right-container">\n    <div class="slide-in-right-element">\n      <slot>\n        <div class="default-content">\n          <div class="icon">➡️</div>\n          <div class="text">右滑入</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.slide-in-right-element {\n  animation: slideInRight 1s cubic-bezier(0.23, 1, 0.32, 1);\n}\n@keyframes slideInRight {\n  from { transform: translateX(100%); opacity: 0; }\n  to { transform: translateX(0); opacity: 1; }\n}\n</style>`,
-    explanation: `【技术原理】\n- 通过transform: translateX和opacity实现滑入。\n- animation属性控制动画时长和缓动。\n\n【实现要点】\n1. 元素从右侧100%滑入到原位。\n2. 透明度渐变，增强动感。\n\n【设计思路】\n- 适合弹窗、侧边栏、提示等场景。\n\n【性能优化】\n- 仅用transform和opacity，动画流畅不卡顿。\n\n【应用场景】\n- 弹窗、侧边栏、内容切换等。\n\n【注意事项】\n- 动画时长和缓动可调整。`
-  },
-  {
-    id: 'zoom-in-animation',
-    name: '放大进入动画',
-    description: '元素由小变大放大进入的动画效果',
-    category: 'animation',
-    difficulty: 'basic',
-    tags: ['放大', '进入', '缩放', '基础'],
-    component: 'ZoomInAnimation',
-    code: `<template>\n  <div class="zoom-in-container">\n    <div class="zoom-in-element">\n      <slot>\n        <div class="default-content">\n          <div class="icon">🔍</div>\n          <div class="text">放大进入</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.zoom-in-element {\n  animation: zoomIn 0.8s cubic-bezier(0.23, 1, 0.32, 1);\n}\n@keyframes zoomIn {\n  from { transform: scale(0.5); opacity: 0; }\n  to { transform: scale(1); opacity: 1; }\n}\n</style>`,
-    explanation: `【技术原理】\n- 通过transform: scale和opacity实现放大进入。\n- animation属性控制动画时长和缓动。\n\n【实现要点】\n1. scale从0.5到1，透明度从0到1。\n2. 0.8秒完成，动感强烈。\n\n【设计思路】\n- 适合弹窗、图片、内容加载等场景。\n\n【性能优化】\n- 仅用transform和opacity，动画流畅不卡顿。\n\n【应用场景】\n- 弹窗、图片、内容加载等。\n\n【注意事项】\n- 动画时长和缓动可调整。`
-  },
-  {
-    id: 'rotate-animation',
-    name: '旋转动画',
-    description: '元素旋转的动画效果，适合装饰和加载',
-    category: 'animation',
-    difficulty: 'basic',
-    tags: ['旋转', '装饰', '加载', '基础'],
-    component: 'RotateAnimation',
-    code: `<template>\n  <div class="rotate-container">\n    <div class="rotate-element">\n      <slot>\n        <div class="default-content">\n          <div class="icon">🌀</div>\n          <div class="text">旋转</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.rotate-element {\n  animation: rotate 1.2s linear infinite;\n}\n@keyframes rotate {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n</style>`,
-    explanation: `【技术原理】\n- 通过transform: rotate实现元素旋转。\n- animation属性设置无限循环。\n\n【实现要点】\n1. 1.2秒360度旋转，linear匀速。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合加载、装饰、按钮等场景。\n\n【性能优化】\n- 仅用transform: rotate，动画流畅不卡顿。\n\n【应用场景】\n- 加载动画、装饰性元素等。\n\n【注意事项】\n- 动画速度可调整。`
-  },
-  {
-    id: 'heartbeat-animation',
-    name: '心跳动画',
-    description: '模拟心跳的缩放动画，富有生命力',
-    category: 'animation',
-    difficulty: 'basic',
-    tags: ['心跳', '缩放', '生命力', '基础'],
-    component: 'HeartbeatAnimation',
-    code: `<template>\n  <div class="heartbeat-container">\n    <div class="heartbeat-element">\n      <slot>\n        <div class="default-content">\n          <div class="icon">❤️</div>\n          <div class="text">心跳</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.heartbeat-element {\n  animation: heartbeat 1.5s ease-in-out infinite;\n}\n@keyframes heartbeat {\n  0%, 100% { transform: scale(1); }\n  14% { transform: scale(1.3); }\n  28% { transform: scale(1); }\n  42% { transform: scale(1.3); }\n  70% { transform: scale(1); }\n}\n</style>`,
-    explanation: `【技术原理】\n- 通过transform: scale实现心跳缩放。\n- animation属性设置心跳节奏。\n\n【实现要点】\n1. scale在1和1.3之间交替，1.5秒周期。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合点赞、关注、提示等场景。\n\n【性能优化】\n- 仅用transform: scale，动画流畅不卡顿。\n\n【应用场景】\n- 点赞、关注、提示等。\n\n【注意事项】\n- 动画节奏可调整。`
-  },
-  {
-    id: 'rubber-band-animation',
-    name: '橡皮筋动画',
-    description: '模拟橡皮筋拉伸回弹的动画效果',
-    category: 'animation',
-    difficulty: 'intermediate',
-    tags: ['橡皮筋', '拉伸', '回弹', '有趣'],
-    component: 'RubberBandAnimation',
-    code: `<template>\n  <div class="rubber-band-container">\n    <div class="rubber-band-element">\n      <slot>\n        <div class="default-content">\n          <div class="icon">🪢</div>\n          <div class="text">橡皮筋</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.rubber-band-element {\n  animation: rubberBand 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);\n}\n@keyframes rubberBand {\n  0% { transform: scale3d(1, 1, 1); }\n  30% { transform: scale3d(1.25, 0.75, 1); }\n  40% { transform: scale3d(0.75, 1.25, 1); }\n  50% { transform: scale3d(1.15, 0.85, 1); }\n  65% { transform: scale3d(0.95, 1.05, 1); }\n  75% { transform: scale3d(1.05, 0.95, 1); }\n  100% { transform: scale3d(1, 1, 1); }\n}\n</style>`,
-    explanation: `【技术原理】\n- 通过transform: scale3d实现拉伸回弹。\n- animation属性设置弹性曲线。\n\n【实现要点】\n1. scale3d多阶段变化，模拟橡皮筋弹性。\n2. 1秒完成，动感强烈。\n\n【设计思路】\n- 适合按钮、卡片、交互反馈等场景。\n\n【性能优化】\n- 仅用transform: scale3d，动画流畅不卡顿。\n\n【应用场景】\n- 按钮、卡片、交互反馈等。\n\n【注意事项】\n- 动画节奏可调整。`
-  },
-  // ==================== 异形图组件补充 ====================
-  {
-    id: 'arrow-shape',
-    name: '箭头形状',
-    description: '简洁的箭头图形，常用于指示方向',
-    category: 'shape',
-    difficulty: 'basic',
-    tags: ['箭头', '方向', '指示', '基础'],
-    component: 'ArrowShape',
-    code: `<template>\n  <div class="arrow-shape">\n    <div class="arrow-inner">\n      <slot>\n        <div class="default-content">\n          <div class="icon">➡️</div>\n          <div class="text">箭头</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.arrow-inner {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(135deg, #4fd1c5 0%, #38b2ac 100%);\n  clip-path: polygon(0% 50%, 80% 50%, 80% 0%, 100% 60%, 80% 100%, 80% 50%, 0% 50%);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n}\n</style>`,
-    explanation: `【技术原理】\n- 利用clip-path: polygon实现箭头形状。\n- 渐变背景增强视觉效果。\n\n【实现要点】\n1. clip-path定义箭头多边形。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合流程图、导航、指示等场景。\n\n【性能优化】\n- 纯CSS实现，无需图片或SVG。\n\n【应用场景】\n- 流程图、导航、指示等。\n\n【注意事项】\n- clip-path兼容性需关注。`
-  },
-  {
-    id: 'cloud-shape',
-    name: '云朵形状',
-    description: '卡通风格的云朵图形，适合装饰',
-    category: 'shape',
-    difficulty: 'intermediate',
-    tags: ['云朵', '卡通', '装饰', '中级'],
-    component: 'CloudShape',
-    code: `<template>\n  <div class="cloud-shape">\n    <div class="cloud-inner">\n      <slot>\n        <div class="default-content">\n          <div class="icon">☁️</div>\n          <div class="text">云朵</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.cloud-inner {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(135deg, #a0aec0 0%, #cbd5e0 100%);\n  clip-path: ellipse(60% 40% at 50% 60%);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n}\n</style>`,
-    explanation: `【技术原理】\n- 利用clip-path: ellipse实现云朵形状。\n- 渐变背景增强卡通感。\n\n【实现要点】\n1. clip-path定义椭圆云朵。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合天气、装饰、卡通场景。\n\n【性能优化】\n- 纯CSS实现，无需图片或SVG。\n\n【应用场景】\n- 天气图标、装饰、卡通界面等。\n\n【注意事项】\n- clip-path兼容性需关注。`
-  },
-  {
-    id: 'diamond-shape',
-    name: '菱形',
-    description: '规则菱形图形，常用于装饰和分隔',
-    category: 'shape',
-    difficulty: 'basic',
-    tags: ['菱形', '装饰', '分隔', '基础'],
-    component: 'DiamondShape',
-    code: `<template>\n  <div class="diamond-shape">\n    <div class="diamond-inner">\n      <slot>\n        <div class="default-content">\n          <div class="icon">💎</div>\n          <div class="text">菱形</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.diamond-inner {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);\n  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n}\n</style>`,
-    explanation: `【技术原理】\n- 利用clip-path: polygon实现菱形裁剪。\n- 渐变背景增强装饰感。\n\n【实现要点】\n1. clip-path定义四边形菱形。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合分隔、装饰、图标等场景。\n\n【性能优化】\n- 纯CSS实现，无需图片或SVG。\n\n【应用场景】\n- 分隔线、装饰、图标等。\n\n【注意事项】\n- clip-path兼容性需关注。`
-  },
-  {
-    id: 'triangle-shape',
-    name: '三角形',
-    description: '规则三角形图形，常用于指示和装饰',
-    category: 'shape',
-    difficulty: 'basic',
-    tags: ['三角形', '指示', '装饰', '基础'],
-    component: 'TriangleShape',
-    code: `<template>\n  <div class="triangle-shape">\n    <div class="triangle-inner">\n      <slot>\n        <div class="default-content">\n          <div class="icon">▲</div>\n          <div class="text">三角形</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.triangle-inner {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);\n  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n}\n</style>`,
-    explanation: `【技术原理】\n- 利用clip-path: polygon实现三角形裁剪。\n- 渐变背景增强装饰感。\n\n【实现要点】\n1. clip-path定义三角形。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合指示、装饰、图标等场景。\n\n【性能优化】\n- 纯CSS实现，无需图片或SVG。\n\n【应用场景】\n- 指示箭头、装饰、图标等。\n\n【注意事项】\n- clip-path兼容性需关注。`
-  },
-  {
-    id: 'octagon-shape',
-    name: '八边形',
-    description: '规则八边形图形，常用于装饰和分隔',
-    category: 'shape',
-    difficulty: 'intermediate',
-    tags: ['八边形', '装饰', '分隔', '中级'],
-    component: 'OctagonShape',
-    code: `<template>\n  <div class="octagon-shape">\n    <div class="octagon-inner">\n      <slot>\n        <div class="default-content">\n          <div class="icon">🛑</div>\n          <div class="text">八边形</div>\n        </div>\n      </slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.octagon-inner {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(135deg, #ff5858 0%, #f09819 100%);\n  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n}\n</style>`,
-    explanation: `【技术原理】\n- 利用clip-path: polygon实现八边形裁剪。\n- 渐变背景增强装饰感。\n\n【实现要点】\n1. clip-path定义八边形。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合分隔、装饰、图标等场景。\n\n【性能优化】\n- 纯CSS实现，无需图片或SVG。\n\n【应用场景】\n- 分隔线、装饰、图标等。\n\n【注意事项】\n- clip-path兼容性需关注。`
-  },
-  // ==================== 炫酷效果组件补充 ====================
-  {
-    id: 'hologram-effect',
-    name: '全息投影效果',
-    description: '科幻风格的全息投影动画效果',
-    category: 'effect',
-    difficulty: 'advanced',
-    tags: ['全息', '科幻', '投影', '高级'],
-    component: 'HologramEffect',
-    code: `<template>\n  <div class="hologram-effect">\n    <div class="hologram-inner">\n      <slot>HOLOGRAM</slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.hologram-inner {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);\n  filter: blur(1px) brightness(1.2);\n  box-shadow: 0 0 30px #43cea2, 0 0 60px #185a9d;\n  color: white;\n  font-weight: bold;\n  text-shadow: 0 0 10px #43cea2, 0 0 20px #185a9d;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n</style>`,
-    explanation: `【技术原理】\n- 利用渐变背景、模糊、发光和阴影模拟全息投影。\n- text-shadow和box-shadow增强科幻感。\n\n【实现要点】\n1. 渐变背景+模糊+发光组合。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合科幻、未来、科技主题场景。\n\n【性能优化】\n- 仅用CSS滤镜和阴影，动画流畅不卡顿。\n\n【应用场景】\n- 科技展示、品牌LOGO、标题等。\n\n【注意事项】\n- 滤镜和阴影较多时注意性能。`
-  },
-  {
-    id: 'laser-effect',
-    name: '激光效果',
-    description: '绚丽的激光动画效果，极具视觉冲击力',
-    category: 'effect',
-    difficulty: 'advanced',
-    tags: ['激光', '炫酷', '视觉', '高级'],
-    component: 'LaserEffect',
-    code: `<template>\n  <div class="laser-effect">\n    <div class="laser-inner">\n      <slot>LASER</slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.laser-inner {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);\n  box-shadow: 0 0 40px #ff512f, 0 0 80px #dd2476;\n  color: white;\n  font-weight: bold;\n  text-shadow: 0 0 20px #ff512f, 0 0 40px #dd2476;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n</style>`,
-    explanation: `【技术原理】\n- 利用渐变背景、发光和阴影模拟激光效果。\n- text-shadow和box-shadow增强炫酷感。\n\n【实现要点】\n1. 渐变背景+发光+阴影组合。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合炫酷、未来、科技主题场景。\n\n【性能优化】\n- 仅用CSS阴影和渐变，动画流畅不卡顿。\n\n【应用场景】\n- 科技展示、品牌LOGO、标题等。\n\n【注意事项】\n- 阴影较多时注意性能。`
-  },
-  {
-    id: 'liquid-effect',
-    name: '液体流动效果',
-    description: '模拟液体流动的动画效果',
-    category: 'effect',
-    difficulty: 'advanced',
-    tags: ['液体', '流动', '动态', '高级'],
-    component: 'LiquidEffect',
-    code: `<template>\n  <div class="liquid-effect">\n    <div class="liquid-inner">\n      <slot>LIQUID</slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.liquid-inner {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);\n  filter: blur(0.5px) brightness(1.1);\n  border-radius: 50% 50% 40% 60% / 60% 40% 60% 50%;\n  color: white;\n  font-weight: bold;\n  text-shadow: 0 0 10px #66a6ff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n</style>`,
-    explanation: `【技术原理】\n- 利用渐变背景、滤镜和不规则圆角模拟液体流动。\n- text-shadow增强立体感。\n\n【实现要点】\n1. 渐变背景+滤镜+圆角组合。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合动态、科技、未来主题场景。\n\n【性能优化】\n- 仅用CSS滤镜和圆角，动画流畅不卡顿。\n\n【应用场景】\n- 动态背景、LOGO、标题等。\n\n【注意事项】\n- 滤镜和圆角较多时注意性能。`
-  },
-  {
-    id: 'matrix-rain-effect',
-    name: '矩阵雨效果',
-    description: '模拟黑客帝国风格的矩阵数字雨动画',
-    category: 'effect',
-    difficulty: 'advanced',
-    tags: ['矩阵', '数字雨', '黑客', '高级'],
-    component: 'MatrixRainEffect',
-    code: `<template>\n  <div class="matrix-rain-effect">\n    <div class="matrix-inner">\n      <slot>MATRIX</slot>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.matrix-inner {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(180deg, #0f2027 0%, #2c5364 100%);\n  color: #39ff14;\n  font-family: 'Courier New', monospace;\n  font-weight: bold;\n  text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n</style>`,
-    explanation: `【技术原理】\n- 利用渐变背景、绿色字体和阴影模拟数字雨。\n- text-shadow增强黑客风格。\n\n【实现要点】\n1. 渐变背景+绿色字体+阴影组合。\n2. 结构简洁，slot插槽支持自定义内容。\n\n【设计思路】\n- 适合黑客、科幻、未来主题场景。\n\n【性能优化】\n- 仅用CSS阴影和渐变，动画流畅不卡顿。\n\n【应用场景】\n- 黑客风格展示、LOGO、标题等。\n\n【注意事项】\n- 阴影较多时注意性能。`
   }
 ]
